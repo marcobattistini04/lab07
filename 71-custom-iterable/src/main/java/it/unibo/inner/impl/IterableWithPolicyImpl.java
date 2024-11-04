@@ -26,8 +26,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T>{
             this.array = array;
         }
         public T next() {
-            arrayCounter ++;
-            return this.array[arrayCounter];
+            return this.array[arrayCounter ++];
         } 
 
         public boolean hasNext() {
