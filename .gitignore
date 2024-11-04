@@ -1,4 +1,4 @@
-.class
-bin
-gradle
-build
+*.class
+bin/
+gradle/
+build/
