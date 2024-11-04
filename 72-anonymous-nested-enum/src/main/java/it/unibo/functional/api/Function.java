@@ -23,7 +23,14 @@ public interface Function<I, O> {
      * @param <T> the input (and output) type of the function
      */
     static <T> Function<T, T> identity() {
-        return null;
+        return new Function<T,T>() {
+
+            @Override
+            public T call(T input) {
+                return input;
+            }
+            
+        };
     }
 
 }
