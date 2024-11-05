@@ -47,9 +47,12 @@ class TestStrictBankAccount {
     public void testManagementFees() {
         final  double testManagementFee = 5;
         final  double testTransactionFee = 0.1;
-        final double testReducedbalance = 100 - (testManagementFee + bankAccount.getTransactionsCount()*testTransactionFee);
+        final double testReducedbalance; 
+        final int currentTransactions;
         this.bankAccount.deposit(mRossi.getUserID(), 100);
+        currentTransactions = this.bankAccount.getTransactionsCount();
         this.bankAccount.chargeManagementFees(mRossi.getUserID());
+        testReducedbalance = 100 - (testManagementFee + currentTransactions*testTransactionFee);
         assertEquals(testReducedbalance, bankAccount.getBalance());
         assertEquals(0, bankAccount.getTransactionsCount());
     }
