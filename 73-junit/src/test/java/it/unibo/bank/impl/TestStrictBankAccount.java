@@ -45,7 +45,13 @@ class TestStrictBankAccount {
      */
     @Test
     public void testManagementFees() {
-        fail("To be implemented");
+        final  double testManagementFee = 5;
+        final  double testTransactionFee = 0.1;
+        final double testReducedbalance = 100 - (testManagementFee + bankAccount.getTransactionsCount()*testTransactionFee);
+        this.bankAccount.deposit(mRossi.getUserID(), 100);
+        this.bankAccount.chargeManagementFees(mRossi.getUserID());
+        assertEquals(testReducedbalance, bankAccount.getBalance());
+        assertEquals(0, bankAccount.getTransactionsCount());
     }
 
     /**
@@ -53,7 +59,13 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-        fail("To be implemented");
+        try {
+           bankAccount.deposit(mRossi.getUserID(), -100);
+           bankAccount.withdraw(mRossi.getUserID(), 100);
+           fail("Cannot withdraw from a negative amount");
+        } catch (IllegalArgumentException e) {
+            System.out.println("OK! Catched correct exception");
+        }
     }
 
     /**
