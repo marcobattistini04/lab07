@@ -60,11 +60,11 @@ class TestStrictBankAccount {
     @Test
     public void testNegativeWithdraw() {
         try {
-           bankAccount.deposit(mRossi.getUserID(), -100);
-           bankAccount.withdraw(mRossi.getUserID(), 100);
+           this.bankAccount.deposit(mRossi.getUserID(), -100);
+           this.bankAccount.withdraw(mRossi.getUserID(), 100);
            fail("Cannot withdraw from a negative amount");
         } catch (IllegalArgumentException e) {
-            System.out.println("OK! Catched correct exception");
+            System.out.println("OK! Catched correct exception while trying to do a withdraw from a negative amount");
         }
     }
 
@@ -73,6 +73,13 @@ class TestStrictBankAccount {
      */
     @Test
     public void testWithdrawingTooMuch() {
-        fail("To be implemented");
+        try {
+            this.bankAccount.deposit(mRossi.getUserID(), 100);
+            this.bankAccount.withdraw(mRossi.getUserID(), 200);
+            fail("Cannot do a withdraw greater than the amount");
+        } catch (IllegalArgumentException e) {
+            System.out.println("OK! Catched correct exception while trying to do a withdraw greater than the amount");
+        }
+        
     }
 }
