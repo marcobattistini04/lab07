@@ -8,7 +8,9 @@ import java.util.Objects;
  * Implementation of {@link MonthSorter}.
  */
 public final class MonthSorterNested implements MonthSorter {
-
+    /**
+     * enumeration representing a month
+     */
     public static enum Month {
         JANUARY(31), FEBRUARY(28), MARCH(31), APRIL(30), MAY(31), JUNE(30), 
         JULY(31), AUGUST(31), SEPTEMBER(30), OCTOBER(31), NOVEMBER(30), DECEMBER(31);
@@ -19,6 +21,13 @@ public final class MonthSorterNested implements MonthSorter {
             this.monthDays = n;
         }
         
+        /**
+         * 
+         * @param str string representing a month (completely or a symbol)
+         * @return the most similar Month to the string provided as param. 
+         * @throws IllegalArgumentEcxeption if the string passed as param is ambiguous ( similar to 2 or more different months)
+         * or if the string isn't similar to any month
+         */
         public static Month fromString(String str) {
             Objects.requireNonNull(str);
             try {
